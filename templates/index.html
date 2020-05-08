@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+<body>    
+  <div class="card shadow-sm mx-5 mt-4">
+    <div class="card-header font-weight-bold text-center">
+      Input memo
+    </div>
+  
+    <div class="card-body">
+      <form action="/action" method="POST" class="input-group mx-3">
+        <input type="text" name="contents" class="form-control"
+          placeholder="메모 입력" pattern="\S.{2,50}" title="2글자에서 50글자 사이 문자열을 입력하세요"><br>
+
+        <div class="input-group-append">
+          <select name="primary" class="form-control">
+            <option selected disabled>중요도 선택</option>
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+          </select>
+        </div>
+      
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-outline-secondary">추가</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card shadow-sm mx-5 mt-4">
+    <div class="card-header font-weight-bold text-center">
+      {{ stat }}
+    </div>
+
+    <div class="card-body">
+      <table class="table table-sm table-responsive-md table-striped">
+        <!-- 표 고정 길이 : style="table-layout: fixed; word-break: break-all;" -->
+        <thead class="text-center">
+          <tr>
+            <th>상태</th>
+            <th class="text-left">내용</th>
+            <th></th>
+            <th>삭제</th>
+            <th>변경</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for todo in todos %}
+          <tr>
+            <td class="text-center"><a href="./done?_id={{ todo['_id'] }}"><input type="image" 
+              src="static/images/{{todo['done']}}.png" width="30" alt="Submit ME"></a></td>
+            <td class="contents" style="word-break: break-all;">
+              <strong>{{ todo["contents"] }}</strong><br/>
+              - {{ todo["date"].strftime("%Y-%m-%d") }}
+            </td>
+            
+            {% if todo["primary"] == "Low" %}
+              <td class="badge badge-pill badge-success align-middle">{{ todo["primary"] }}</td>
+            {% elif todo["primary"] == "Medium" %}
+              <td class="badge badge-pill badge-warning align-middle">{{ todo["primary"] }}</td>
+            {% elif todo["primary"] == "High" %}
+              <td class="badge badge-pill badge-danger align-middle">{{ todo["primary"] }}</td>
+            {% else %}
+            <td class="badge badge-pill badge-light align-middle">{{ todo["primary"] }}</td>
+            {% endif %}
+
+            <td class="text-center"><a href="./delete?_id={{ todo['_id'] }}">
+              <img src="{{ url_for('static',filename='images/trash.png') }}", width="30")/></a></td>
+            
+            <td class="text-center"><a href="./update?_id={{ todo['_id'] }}">
+              <img src="{{ url_for('static',filename='images/edit.png') }}", width="30")/></a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+{% endblock %}
