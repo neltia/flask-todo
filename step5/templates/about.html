@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<body class="text-center">    
+  <div class="card shadow-sm mx-2 mt-2">
+    <div class="card-header font-weight-bold">
+      About
+    </div>
+
+    <div class="card-body">
+      <div class="card-text">
+          파이썬 플라스크 웹 프레임워크를 사용해 만들어진 웹 페이지입니다.<br>
+          <img class="img-fluid" src="{{ url_for('static', filename='images/flask.png') }}">
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}
