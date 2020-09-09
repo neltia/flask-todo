@@ -75,8 +75,8 @@ def action_add():
 		todos.insert_one({"contents":contents, "date":date, "primary":primary, "done":"no"})
 		todos.delete_many({"contents":{"$eq": ""}})
 		return """<script>
-				window.location = document.referrer;
-				</script>"""
+			window.location = document.referrer;
+			</script>"""
 	else:
 		return render_template('page_not.html')
 
@@ -90,8 +90,8 @@ def done_add():
 	else:
 		todos.update_one({"_id":ObjectId(id)}, {"$set": {"done":"yes"}})
 	return """<script>
-				window.location = document.referrer;
-				</script>"""
+		window.location = document.referrer;
+		</script>"""
 
 #Delete memo
 @app.route("/delete")
@@ -99,8 +99,8 @@ def action_delete():
 	key=request.values.get("_id")
 	todos.delete_one({"_id":ObjectId(key)})
 	return """<script>
-				window.location = document.referrer;
-				</script>"""
+		window.location = document.referrer;
+		</script>"""
 
 #Done memo update
 @app.route("/action2", methods=['GET','POST'])
@@ -112,8 +112,8 @@ def done_update():
 		todos.update_one({"_id":ObjectId(id)}, {'$set':{"contents":contents, "primary":primary}})
 		todos.delete_many({"contents":{"$eq": ""}})
 		return """<script>
-				window.location = document.referrer;
-				</script>"""
+			window.location = document.referrer;
+			</script>"""
 	else:
 		return render_template('page_not.html')
 
