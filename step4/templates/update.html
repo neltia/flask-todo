@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<body class="text-center">
+    <div class="card shadow-sm mx-2 mt-2">
+        <div class="card-header font-weight-bold">
+            Update memo
+        </div>
+
+        <div class="card-body">
+            <form action="/action2" method="POST" class="mx-2">
+                {{ form.csrf_token }}
+                <div class="input mb-2">
+                    {{ form.content(class="form-control", placeholder=task['contents'], value=task['contents']) }}
+                </div>
+
+                <div class="input-group">
+                    <select name="primary" class="input-group-append form-control">
+                        <option value="{{ task['primary'] }}" selected>{{ task['primary'] }}</option>
+                        <option>None</option>
+                        <option>Low</option>
+                        <option>Medium</option>
+                        <option>High</option>
+                    </select>
+
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-outline-secondary float-right">
+                            변경 <i class="fa fa-exchange fa-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}
