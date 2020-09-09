@@ -1,0 +1,32 @@
+<table class="table table-sm table-striped">
+    <thead class="text-center">
+        <tr>
+            <th>상태</th>
+            <th class="text-left">내용</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for todo in todos %}
+        <tr>
+            <td class="text-center"><a href="./done?_id={{ todo['_id'] }}"><input type="image"
+                        src="static/images/{{todo['done']}}.png" width="30" alt="Submit ME"></a></td>
+            <td class="contents" style="word-break: break-all;">
+                <strong>{{ todo["contents"] }}</strong><br>
+                - {{ todo["date"].strftime("%Y-%m-%d") }}
+            </td>
+
+            {% if todo["primary"] == "Low" %}
+            <td class="badge badge-pill badge-success align-middle">{{ todo["primary"] }}</td>
+            {% elif todo["primary"] == "Medium" %}
+            <td class="badge badge-pill badge-warning align-middle">{{ todo["primary"] }}</td>
+            {% elif todo["primary"] == "High" %}
+            <td class="badge badge-pill badge-danger align-middle">{{ todo["primary"] }}</td>
+            {% else %}
+            <td class="badge badge-pill badge-light align-middle">{{ todo["primary"] }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

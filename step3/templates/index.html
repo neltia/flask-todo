@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="height: 80%;">
+  <div class="card shadow-lg mx-2 mt-2">
+    <div class="card-header font-weight-bold text-center">
+      Input memo
+    </div>
+
+    <div class="card-body">
+      <form action="/action" method="POST" class="mx-2">
+        {{ form.csrf_token }}
+        <div class="input mb-2">
+          {{ form.content(class="form-control", placeholder="메모를 입력하세요") }}
+        </div>
+
+        <div class="input-group">
+          <select name="primary" class="input-group-append form-control">
+            <option selected disabled>중요도 선택</option>
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+          </select>
+
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-outline-secondary float-right">
+              추가 <i class="fa fa-plus-circle fa-lg"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card shadow-sm mx-2 mt-2">
+    <div class="card-header font-weight-bold text-center">
+      {{ stat }}
+    </div>
+
+    <div class="card-body">
+      {% include "list.html" %}
+    </div>
+  </div>
+</div>
+{% endblock %}
