@@ -71,8 +71,6 @@ def action_add():
 		return """<script>
 			window.location = document.referrer;
 			</script>"""
-	else:
-		return render_template('page_not.html')
 
 #Done memo change
 @app.route("/done")
@@ -108,8 +106,6 @@ def done_update():
 		return """<script>
 			window.location = document.referrer;
 			</script>"""
-	else:
-		return render_template('page_not.html')
 
 if __name__ == "__main__":
     app.run()
