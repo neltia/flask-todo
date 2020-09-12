@@ -14,7 +14,7 @@
         <tr>
             <td class="text-center"><a href="./done?_id={{ todo['_id'] }}"><input type="image"
                         src="static/images/{{todo['done']}}.png" width="30" alt="Submit ME"></a></td>
-            <td class="contents" style="word-break: break-all;">
+            <td>
                 <strong>{{ todo["contents"] }}</strong><br>
                 - {{ todo["date"].strftime("%Y-%m-%d") }}
             </td>
