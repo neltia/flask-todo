@@ -63,8 +63,6 @@ def action_add():
 		return """<script>
 			window.location = document.referrer;
 			</script>"""
-	else:
-		return render_template('page_not.html')
 
 #Done memo change
 @app.route("/done")
