@@ -104,8 +104,6 @@ def done_update():
 		primary = request.values.get('primary')
 		todos.update_one({"_id":ObjectId(key)}, {'$set':{"contents":contents, "primary":primary}})
 		return redirect(url_for('all_page'))
-	else:
-		return """<h1>1</h1>"""
 
 if __name__ == "__main__":
     app.run()
