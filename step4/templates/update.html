@@ -10,6 +10,7 @@
         <div class="card-body">
             <form action="/action2" method="POST" class="mx-2">
                 {{ form.csrf_token }}
+                <input type="hidden" name="_id" value="{{ task['_id'] }}">
                 <div class="input mb-2">
                     {{ form.content(class="form-control", placeholder=task['contents'], value=task['contents']) }}
                 </div>
@@ -22,7 +23,6 @@
                         <option>Medium</option>
                         <option>High</option>
                     </select>
-
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-outline-secondary float-right">
                             변경 <i class="fa fa-exchange fa-lg"></i>

@@ -2,6 +2,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from flask import redirect, url_for
 
 from flask_wtf import FlaskForm
 from wtforms import StringField
@@ -98,14 +99,13 @@ def action_delete():
 @app.route("/action2", methods=['GET','POST'])
 def done_update():
 	if request.method == 'POST':
-		id=request.values.get("_id")
-		contents = request.values.get('contents')
+		key = request.values.get("_id")
+		contents = request.form['content']
 		primary = request.values.get('primary')
-		todos.update_one({"_id":ObjectId(id)}, {'$set':{"contents":contents, "primary":primary}})
-		todos.delete_many({"contents":{"$eq": ""}})
-		return """<script>
-			window.location = document.referrer;
-			</script>"""
+		todos.update_one({"_id":ObjectId(key)}, {'$set':{"contents":contents, "primary":primary}})
+		return redirect(url_for('all_page'))
+	else:
+		return """<h1>1</h1>"""
 
 if __name__ == "__main__":
     app.run()
