@@ -73,7 +73,6 @@ def action_add():
 		date = datetime.today()
 		primary = request.values.get('primary')
 		todos.insert_one({"contents":contents, "date":date, "primary":primary, "done":"no"})
-		todos.delete_many({"contents":{"$eq": ""}})
 		return """<script>
 			window.location = document.referrer;
 			</script>"""
